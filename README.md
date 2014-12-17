@@ -47,7 +47,7 @@ private function onLoadComplete(e:Event):void
 #### **2. Инициализация библиотеки.** 
 После загрузки библиотеки её надо инициализировать, вызвав метод init и передав в него id-слота:
 ```as3
-adman.init(2060, {requestParams:{content_id:{id: XXXXXXX}}});
+adman.init(2060, {requestParams: {content_id: {id: XXXXXXX}}});
 ```
 #### **3. Запуск секций.**
 В случае успешной загрузки и обработки данных библиотека распространит событие adReady. 
