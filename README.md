@@ -63,5 +63,8 @@ private function onAdReady(e:Event):void
     adman.start(“preroll”);
 }
 ```
-#### **2. Компиляция приложения.** 
+#### **4. Компиляция приложения.** 
 Рекомендация пользоваться:  [flex compiler](http://www.adobe.com/devnet/flex/flex-sdk-download.html)
+```bash
+mxmlc Smile.as -output ../build/Smile.swf
+```
