@@ -1,4 +1,4 @@
-# **Инструкция по внедрению библиотеки рекламы Adman.**
+## **Инструкция по внедрению библиотеки рекламы Adman.**
 
 Для интеграции рекламной системы Mail.ru Group с играми и приложениями Vkontakte,
 необходимо интегрировать в приложение adman c вызовом рекламного места в приложении или игре.
@@ -16,20 +16,20 @@
 определений классов. После завершения загрузки надо получить ссылку на экземпляр библиотеки и 
 добавить либо непосредственно сам экземпляр, либо объект loader в список отображения:
 
-`private var loader:Loader;
-private var adman:Object;`
+`private var loader:Loader;`
+`private var adman:Object;`
 
-`loader = new Loader();
-loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
-var context:LoaderContext = new LoaderContext(false, new ApplicationDomain());
-loader.load(new URLRequest("http://rs.mail.ru/vp/adman2.swf"), context);`
+`loader = new Loader();`
+`loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);`
+`var context:LoaderContext = new LoaderContext(false, new ApplicationDomain());`
+`loader.load(new URLRequest("http://rs.mail.ru/vp/adman2.swf"), context);`
 
 
-`private function onLoadComplete(e:Event):void
-{
-    adman = loader.content;
-    addChild(adman as DisplayObject);
-}`
+`private function onLoadComplete(e:Event):void`
+`{`
+`    adman = loader.content;`
+`    addChild(adman as DisplayObject);`
+`}`
 
 #### **2. Инициализация библиотеки.** 
 После загрузки библиотеки её надо инициализировать, вызвав метод init и передав в него id-слота:
@@ -57,11 +57,11 @@ private function onAdReady(e:Event):void
 }
 
 Возможные типы секций:
-preroll - реклама для показа перед воспроизведением ролика
-pauseroll - реклама для показа во время паузы воспроизведения ролика
-midroll - реклама для показа в момент воспроизведением ролика (в промежутках)
-postroll - реклама для показа после воспроизведением ролика
-overlay - реклама для показа поверх ролика (обычно текстовая и занимает не весь экран)
-autostart - реклама для показа сразу после старта видео плеера. По сути тоже самое, что и preroll, с 
+- preroll - реклама для показа перед воспроизведением ролика
+- pauseroll - реклама для показа во время паузы воспроизведения ролика
+- midroll - реклама для показа в момент воспроизведением ролика (в промежутках)
+- postroll - реклама для показа после воспроизведением ролика
+- overlay - реклама для показа поверх ролика (обычно текстовая и занимает не весь экран)
+- autostart - реклама для показа сразу после старта видео плеера. По сути тоже самое, что и preroll, с 
 той только разницей, что preroll может быть запущен по нажатию кнопки play для видео плеера, а 
 для запуска autostart можно не ждать от пользователя никаких действий.
