@@ -10,43 +10,51 @@
 Прежде чем использовать библиотеку, её необходимо сначала загрузить в приложение.
 Перед загрузкой библиотеки необходимо разрешить доступ к приложению с домена библиотеки:
 
-`Security.allowDomain("rs.mail.ru");`
+```actionscript
+Security.allowDomain("rs.mail.ru");
+```
 
 Загружать библиотеку надо в собственный домен приложения, чтобы избежать конфликта 
 определений классов. После завершения загрузки надо получить ссылку на экземпляр библиотеки и 
 добавить либо непосредственно сам экземпляр, либо объект loader в список отображения:
 
-`private var loader:Loader;`
-`private var adman:Object;`
+```actionscript
+private var loader:Loader;
+private var adman:Object;
+...
 
-`loader = new Loader();`
-`loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);`
-`var context:LoaderContext = new LoaderContext(false, new ApplicationDomain());`
-`loader.load(new URLRequest("http://rs.mail.ru/vp/adman2.swf"), context);`
+private function initAd(e:Event = null):void
+{
+    ...
+    loader = new Loader();
+    loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
+    var context:LoaderContext = new LoaderContext(false, new ApplicationDomain());
+    loader.load(new URLRequest("http://rs.mail.ru/vp/adman2.swf"), context);
+}
 
-
-`private function onLoadComplete(e:Event):void`
-`{`
-`    adman = loader.content;`
-`    addChild(adman as DisplayObject);`
-`}`
+private function onLoadComplete(e:Event):void
+{
+    adman = loader.content;
+    addChild(adman as DisplayObject);
+}
+```
 
 #### **2. Инициализация библиотеки.** 
 После загрузки библиотеки её надо инициализировать, вызвав метод init и передав в него id-слота:
-
+```actionscript
 adman.init(id);
-
+```
 В случае, если у Вас ещё нет id слота,  можно передать в этот параметр 0 – тогда библиотека будет 
 загружать данные тестового слота. После этого надо подписаться на события от библиотеки и дать 
 команду загрузить данные. Все возможные события описаны ниже.
-
+```actionscript
 adman.load();
-
+```
 #### **3. Запуск секций.**
 В случае успешной загрузки и обработки данных библиотека распространит событие adReady. 
 После получения этого события надо установить желаемый размер области рекламы и можно 
 запускать показ рекламы, вызывая метод start и передавая в него название секции:
-
+```actionscript
 adman.addEventListener("adReady",onAdReady);
 adman.load();
 
@@ -55,7 +63,7 @@ private function onAdReady(e:Event):void
     adman.setSize(500,500);
     adman.start(“preroll”);
 }
-
+```
 Возможные типы секций:
 - preroll - реклама для показа перед воспроизведением ролика
 - pauseroll - реклама для показа во время паузы воспроизведения ролика
